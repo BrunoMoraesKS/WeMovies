@@ -38,7 +38,9 @@ const Header = () => {
       />
 
       <S.CartContainer>
-        <S.CartSpan>{`${getTotalProducts()} itens`}</S.CartSpan>
+        <S.CartSpan>{`${getTotalProducts()} ${
+          getTotalProducts() === 1 ? 'item' : 'itens'
+        }`}</S.CartSpan>
 
         <S.CartIcon
           src={cartIcon}

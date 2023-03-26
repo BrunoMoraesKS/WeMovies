@@ -12,7 +12,7 @@ import { formatCurrencyBRL } from '../../utils/currency';
 const Cart = () => {
   const navigate = useNavigate();
   const { cart } = useContext(CartContext);
-  const { getTotalPrice } = useCart();
+  const { getTotalPrice, cleanCart } = useCart();
 
   const [purchaseMade, setPurchaseMade] = useState<boolean>(false);
 
@@ -59,6 +59,7 @@ const Cart = () => {
             <Button
               onClick={() => {
                 setPurchaseMade(true);
+                cleanCart();
               }}
               fullWidth
               label='Finalizar Pedido'

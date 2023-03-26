@@ -32,7 +32,7 @@ const CartMovieCard = ({ movie }: ICartMovieCardProps) => {
           <S.MoviePrice>{formatCurrencyBRL(movie.price)}</S.MoviePrice>
           <S.TrashBin
             onClick={() => {
-              deleteMoviefromCart(movieWithoutQuantity);
+              deleteMoviefromCart(movieWithoutQuantity.id);
             }}
             src={trashBin}
             alt='lixeira'
@@ -45,7 +45,7 @@ const CartMovieCard = ({ movie }: ICartMovieCardProps) => {
               addMovieToCart(movieWithoutQuantity);
             }}
             onRemove={() => {
-              removeMoviefromCart(movieWithoutQuantity);
+              removeMoviefromCart(movieWithoutQuantity.id);
             }}
             value={movie.quantity}
             onChange={() => {

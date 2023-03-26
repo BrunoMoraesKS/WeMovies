@@ -1,5 +1,6 @@
 import React from 'react';
 import useCart from '../../hooks/cart';
+import cartIcon from '../../assets/icons/cart.svg';
 import { IProduct } from '../../interfaces/products/product';
 import Button from '../Button';
 import * as S from './styles';
@@ -9,7 +10,11 @@ interface IMovieCardProps {
 }
 
 const MovieCard = ({ movie }: IMovieCardProps) => {
-  const { addMovieToCart } = useCart();
+  const handleAddMovieToCart = (movie: IProduct) => {
+    addMovieToCart(movie);
+  };
+
+  const { addMovieToCart, getMovieQuantity } = useCart();
 
   return (
     <S.Container>
@@ -18,10 +23,21 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
       <S.MoviePrice>R$ {movie.price}</S.MoviePrice>
       <Button
         onClick={() => {
-          addMovieToCart(movie);
+          handleAddMovieToCart(movie);
         }}
+        color={getMovieQuantity(movie.id) > 0 ? 'success' : 'primary'}
+        icon={
+          <S.ButtonIconContainer>
+            <S.ButtonIcon src={cartIcon} alt='Itens no carrinho' />
+            <S.ButtonSpan>{getMovieQuantity(movie.id)}</S.ButtonSpan>
+          </S.ButtonIconContainer>
+        }
         fullWidth
-        label='Adicionar ao carrinho'
+        label={
+          getMovieQuantity(movie.id) > 0
+            ? 'Item Adicionado'
+            : 'Adicionar ao carrinho'
+        }
       />
     </S.Container>
   );

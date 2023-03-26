@@ -7,8 +7,10 @@ interface IButtonProps {
 }
 
 export const Container = styled.button<IButtonProps>`
-  color: ${({ theme }) => theme.palette.white};
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 
   width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
 
@@ -39,7 +41,8 @@ export const Container = styled.button<IButtonProps>`
         return '0.8rem';
     }
   }};
-
+  color: ${({ theme }) => theme.palette.white};
+  text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 1px;
 

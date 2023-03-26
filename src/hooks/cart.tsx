@@ -36,12 +36,12 @@ const useCart = () => {
     setCart(updatedCartProducts);
   };
 
-  const removeMoviefromCart = (movie: IProduct) => {
+  const removeMoviefromCart = (id: number) => {
     const cartProducts = getLocalStorage('cartProducts');
     let updatedCartProducts = [];
 
     updatedCartProducts = cartProducts?.map((cartProduct: ICartProduct) => {
-      if (cartProduct.id === movie.id) {
+      if (cartProduct.id === id) {
         return {
           ...cartProduct,
           quantity: cartProduct.quantity - 1,
@@ -59,12 +59,12 @@ const useCart = () => {
     setCart(updatedCartProducts);
   };
 
-  const deleteMoviefromCart = (movie: IProduct) => {
+  const deleteMoviefromCart = (id: number) => {
     const cartProducts = getLocalStorage('cartProducts');
     let updatedCartProducts = [];
 
     updatedCartProducts = cartProducts?.filter(
-      (cartProduct: ICartProduct) => cartProduct.id !== movie.id
+      (cartProduct: ICartProduct) => cartProduct.id !== id
     );
 
     setLocalStorage('cartProducts', updatedCartProducts);
@@ -82,11 +82,31 @@ const useCart = () => {
     return totalPrice;
   };
 
+  const getMovieQuantity = (id: number) => {
+    const cartProducts = getLocalStorage('cartProducts');
+    let movieQuantity = 0;
+
+    cartProducts?.forEach((cartProduct: ICartProduct) => {
+      if (cartProduct.id === id) {
+        movieQuantity = cartProduct.quantity;
+      }
+    });
+
+    return movieQuantity;
+  };
+
+  const cleanCart = () => {
+    setLocalStorage('cartProducts', []);
+    setCart([]);
+  };
+
   return {
     addMovieToCart,
     removeMoviefromCart,
     deleteMoviefromCart,
     getTotalPrice,
+    getMovieQuantity,
+    cleanCart,
   };
 };
 

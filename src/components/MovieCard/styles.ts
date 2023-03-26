@@ -29,3 +29,21 @@ export const MoviePrice = styled.span`
 
   font-size: 1.25rem;
 `;
+
+export const ButtonIconContainer = styled.div`
+  display: flex;
+  gap: 4px;
+`;
+
+export const ButtonIcon = styled.img`
+  position: relative;
+  top: 2px;
+
+  width: 14px;
+`;
+
+export const ButtonSpan = styled.span`
+  font-size: 1rem;
+
+  font-weight: 400;
+`;
