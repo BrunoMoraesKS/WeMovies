@@ -44,5 +44,50 @@ export const CartProductsContainer = styled.div`
   gap: 16px;
 
   width: 100%;
+  height: 100%;
+  min-height: calc(100vh - 211px);
   padding: 16px;
+`;
+
+export const SeparatorLine = styled.div`
+  width: 100%;
+  height: 1px;
+
+  margin-bottom: 4px;
+
+  background-color: ${({ theme }) => theme.palette.black};
+`;
+
+export const FinishPurchaseContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  width: 100%;
+  padding: 16px;
+`;
+
+export const TotalContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+
+  width: 100%;
+  padding: 0 16px;
+
+  font-weight: 700;
+`;
+
+export const LabelSpan = styled.span`
+  color: ${({ theme }) => theme.palette.gray};
+  text-transform: uppercase;
+
+  font-size: 1.05rem;
+`;
+
+export const TotalPrice = styled.span`
+  color: ${({ theme }) => theme.palette.black};
+
+  font-size: 1.65rem;
 `;

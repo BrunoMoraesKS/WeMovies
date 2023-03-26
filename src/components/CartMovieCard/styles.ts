@@ -14,20 +14,29 @@ export const Container = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+
+  width: 100%;
+  min-height: 82px;
+
+  margin-left: 16px;
+`;
+
+export const TitleContainer = styled.div`
+  display: flex;
   align-items: center;
   justify-content: space-between;
 
   width: 100%;
-  height: 100%;
-
-  border: 1px solid red;
 `;
 
-export const TitleAndPriceContainer = styled.div`
+export const TrashBin = styled.img`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
+  align-self: center;
+  justify-self: flex-end;
+  cursor: pointer;
+
+  min-height: 18px;
 `;
 
 export const MovieImage = styled.img`
@@ -40,7 +49,37 @@ export const MovieTitle = styled.h3`
 `;
 
 export const MoviePrice = styled.span`
+  margin-left: 24px;
+  margin-right: 16px;
+
   color: ${({ theme }) => theme.palette.black};
 
-  font-size: 1.25rem;
+  font-size: 1.1rem;
+`;
+
+export const SubtotalPrice = styled.span`
+  color: ${({ theme }) => theme.palette.black};
+
+  font-size: 1rem;
+`;
+
+export const CounterContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+`;
+
+export const SubtotalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
+export const LabelSpan = styled.span`
+  color: ${({ theme }) => theme.palette.gray};
+  text-transform: uppercase;
+
+  font-size: 0.85rem;
 `;
