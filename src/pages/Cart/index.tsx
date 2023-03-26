@@ -1,34 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import Button from '../../components/Button';
 import emptyCartImage from '../../assets/images/emptyCart.svg';
 import successPurchase from '../../assets/images/successPurchase.svg';
-import { ICartProduct } from '../../interfaces/products/cartProduct';
-import { getLocalStorage } from '../../utils/localStorage';
 import * as S from './styles';
 import { useNavigate } from 'react-router-dom';
 import CartMovieCard from '../../components/CartMovieCard';
+import { CartContext } from '../../context/cart';
+import useCart from '../../hooks/cart';
+import { formatCurrencyBRL } from '../../utils/currency';
 
 const Cart = () => {
   const navigate = useNavigate();
+  const { cart } = useContext(CartContext);
+  const { getTotalPrice } = useCart();
 
-  const [products, setProducts] = useState<ICartProduct[]>([]);
   const [purchaseMade, setPurchaseMade] = useState<boolean>(false);
-
-  const handleGetCartProducts = async () => {
-    setProducts(getLocalStorage('cartProducts'));
-
-    console.log(products);
-  };
-
-  useEffect(() => {
-    handleGetCartProducts();
-
-    // [{"id":1,"image":"https://wefit-react-web-test.s3.amazonaws.com/viuva-negra.png","price":9.99,"title":"Viúva Negra","amount":2}]
-  }, []);
 
   return (
     <S.Container>
-      {!products && !purchaseMade && (
+      {cart.length === 0 && !purchaseMade && (
         <S.EmptyCartContainer>
           <S.EmptyCartText>Parece que não há nada por aqui :(</S.EmptyCartText>
 
@@ -49,10 +39,10 @@ const Cart = () => {
         </S.EmptyCartContainer>
       )}
 
-      {products && !purchaseMade && (
+      {cart.length > 0 && !purchaseMade && (
         <>
           <S.CartProductsContainer>
-            {products?.map((movie, index) => {
+            {cart?.map((movie, index) => {
               return (
                 <CartMovieCard key={`${movie.id} - ${index}`} movie={movie} />
               );
@@ -64,7 +54,7 @@ const Cart = () => {
 
             <S.TotalContainer>
               <S.LabelSpan>Total</S.LabelSpan>
-              <S.TotalPrice>R$ 29,90</S.TotalPrice>
+              <S.TotalPrice>{formatCurrencyBRL(getTotalPrice())}</S.TotalPrice>
             </S.TotalContainer>
             <Button
               onClick={() => {

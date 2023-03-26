@@ -45,16 +45,18 @@ export const MovieImage = styled.img`
 `;
 
 export const MovieTitle = styled.h3`
-  font-size: 1rem;
+  font-size: 0.9rem;
+
+  white-space: nowrap;
 `;
 
 export const MoviePrice = styled.span`
-  margin-left: 24px;
+  margin-left: 20px;
   margin-right: 16px;
 
   color: ${({ theme }) => theme.palette.black};
 
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 `;
 
 export const SubtotalPrice = styled.span`

@@ -1,6 +1,8 @@
 import React from 'react';
 import trashBin from '../../assets/icons/trashBin.svg';
+import useCart from '../../hooks/cart';
 import { ICartProduct } from '../../interfaces/products/cartProduct';
+import { formatCurrencyBRL } from '../../utils/currency';
 import Button from '../Button';
 import CartCounter from '../CartCounter';
 import * as S from './styles';
@@ -10,6 +12,16 @@ interface ICartMovieCardProps {
 }
 
 const CartMovieCard = ({ movie }: ICartMovieCardProps) => {
+  const { addMovieToCart, removeMoviefromCart, deleteMoviefromCart } =
+    useCart();
+
+  const movieWithoutQuantity = {
+    id: movie.id,
+    title: movie.title,
+    image: movie.image,
+    price: movie.price,
+  };
+
   return (
     <S.Container>
       <S.MovieImage src={movie.image} />
@@ -17,19 +29,25 @@ const CartMovieCard = ({ movie }: ICartMovieCardProps) => {
       <S.Content>
         <S.TitleContainer>
           <S.MovieTitle>{movie.title}</S.MovieTitle>
-          <S.MoviePrice>R$ {movie.price}</S.MoviePrice>
-          <S.TrashBin src={trashBin} alt='lixeira' />
+          <S.MoviePrice>{formatCurrencyBRL(movie.price)}</S.MoviePrice>
+          <S.TrashBin
+            onClick={() => {
+              deleteMoviefromCart(movieWithoutQuantity);
+            }}
+            src={trashBin}
+            alt='lixeira'
+          />
         </S.TitleContainer>
 
         <S.CounterContainer>
           <CartCounter
             onAdd={() => {
-              console.log('add');
+              addMovieToCart(movieWithoutQuantity);
             }}
             onRemove={() => {
-              console.log('remove');
+              removeMoviefromCart(movieWithoutQuantity);
             }}
-            value={movie.amount}
+            value={movie.quantity}
             onChange={() => {
               console.log('change');
             }}
@@ -37,7 +55,9 @@ const CartMovieCard = ({ movie }: ICartMovieCardProps) => {
 
           <S.SubtotalContainer>
             <S.LabelSpan>Subtotal</S.LabelSpan>
-            <S.SubtotalPrice>R$ {movie.price * movie.amount}</S.SubtotalPrice>
+            <S.SubtotalPrice>
+              {formatCurrencyBRL(movie.price * movie.quantity)}
+            </S.SubtotalPrice>
           </S.SubtotalContainer>
         </S.CounterContainer>
       </S.Content>

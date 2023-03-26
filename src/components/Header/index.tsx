@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import logo from '../../assets/images/logo.png';
-import cart from '../../assets/icons/basket.svg';
+import cartIcon from '../../assets/icons/basket.svg';
 import * as S from './styles';
 import { useNavigate } from 'react-router-dom';
+import { ICartProduct } from '../../interfaces/products/cartProduct';
+import { CartContext } from '../../context/cart';
 
 const Header = () => {
+  const { cart } = useContext(CartContext);
+
   const navigate = useNavigate();
+
+  const getTotalProducts = () => {
+    var productsCounter = 0;
+
+    if (cart) {
+      cart.forEach((product: ICartProduct) => {
+        productsCounter += product.quantity;
+      });
+    }
+
+    return productsCounter;
+  };
+
+  useEffect(() => {
+    getTotalProducts();
+  }, []);
 
   return (
     <S.Container>
@@ -18,10 +38,10 @@ const Header = () => {
       />
 
       <S.CartContainer>
-        <S.CartSpan>0 itens</S.CartSpan>
+        <S.CartSpan>{`${getTotalProducts()} itens`}</S.CartSpan>
 
         <S.CartIcon
-          src={cart}
+          src={cartIcon}
           alt='carrinho de compras'
           onClick={() => {
             navigate('/carrinho');
