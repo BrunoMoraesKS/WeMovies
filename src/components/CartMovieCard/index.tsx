@@ -50,9 +50,7 @@ const CartMovieCard = ({ movie }: ICartMovieCardProps) => {
             <S.CounterContainer>
               <CartCounter
                 onAdd={() => {
-                  if (movie.quantity < 1000) {
-                    addMovieToCart(movieWithoutQuantity);
-                  }
+                  addMovieToCart(movieWithoutQuantity);
                 }}
                 onRemove={() => {
                   removeMoviefromCart(movieWithoutQuantity.id);

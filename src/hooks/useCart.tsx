@@ -18,6 +18,10 @@ const useCart = () => {
     if (isMovieAlreadyInCart) {
       updatedCartProducts = cartProducts?.map((cartProduct: ICartProduct) => {
         if (cartProduct.id === movie.id) {
+          if (cartProduct.quantity >= 1000) {
+            return cartProduct;
+          }
+
           return {
             ...cartProduct,
             quantity: cartProduct.quantity + 1,
