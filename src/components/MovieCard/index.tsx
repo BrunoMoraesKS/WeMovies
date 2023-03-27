@@ -4,6 +4,7 @@ import cartIcon from '../../assets/icons/cart.svg';
 import { IProduct } from '../../interfaces/products/product';
 import Button from '../Button';
 import * as S from './styles';
+import { formatCurrencyBRL } from '../../utils/currency';
 
 interface IMovieCardProps {
   movie: IProduct;
@@ -20,7 +21,7 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
     <S.Container>
       <S.MovieImage src={movie.image} />
       <S.MovieTitle>{movie.title}</S.MovieTitle>
-      <S.MoviePrice>R$ {movie.price}</S.MoviePrice>
+      <S.MoviePrice>{formatCurrencyBRL(movie.price)}</S.MoviePrice>
       <Button
         onClick={() => {
           handleAddMovieToCart(movie);
