@@ -9,18 +9,8 @@ export const Container = styled.header`
   height: 68px;
 
   margin: auto;
+
   margin-top: -64px;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.xs}px) {
-    width: 100vw;
-    margin-left: -16px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}px) {
-    width: 98%;
-    margin: auto;
-    margin-top: -64px;
-  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
     margin-bottom: 16px;

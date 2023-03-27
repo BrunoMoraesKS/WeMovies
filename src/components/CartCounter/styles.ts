@@ -6,7 +6,7 @@ export const Container = styled.div`
 
   gap: 12px;
 
-  width: 117px;
+  width: 121px;
 `;
 
 export const Icon = styled.img`

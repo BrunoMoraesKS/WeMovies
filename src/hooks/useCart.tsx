@@ -36,6 +36,32 @@ const useCart = () => {
     setCart(updatedCartProducts);
   };
 
+  const changeMovieQuantity = (id: number, quantity: number) => {
+    const cartProducts = getLocalStorage('cartProducts');
+    let updatedCartProducts = [];
+
+    if (quantity === 0) {
+      quantity = 1;
+    }
+    if (quantity > 1000) {
+      quantity = 1000;
+    }
+
+    updatedCartProducts = cartProducts?.map((cartProduct: ICartProduct) => {
+      if (cartProduct.id === id) {
+        return {
+          ...cartProduct,
+          quantity,
+        };
+      } else {
+        return cartProduct;
+      }
+    });
+
+    setLocalStorage('cartProducts', updatedCartProducts);
+    setCart(updatedCartProducts);
+  };
+
   const removeMoviefromCart = (id: number) => {
     const cartProducts = getLocalStorage('cartProducts');
     let updatedCartProducts = [];
@@ -102,6 +128,7 @@ const useCart = () => {
 
   return {
     addMovieToCart,
+    changeMovieQuantity,
     removeMoviefromCart,
     deleteMoviefromCart,
     getTotalPrice,

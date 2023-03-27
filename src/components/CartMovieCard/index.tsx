@@ -14,8 +14,12 @@ interface ICartMovieCardProps {
 const CartMovieCard = ({ movie }: ICartMovieCardProps) => {
   const { width } = useWindowDimensions();
 
-  const { addMovieToCart, removeMoviefromCart, deleteMoviefromCart } =
-    useCart();
+  const {
+    addMovieToCart,
+    changeMovieQuantity,
+    removeMoviefromCart,
+    deleteMoviefromCart,
+  } = useCart();
 
   const movieWithoutQuantity = {
     id: movie.id,
@@ -46,14 +50,19 @@ const CartMovieCard = ({ movie }: ICartMovieCardProps) => {
             <S.CounterContainer>
               <CartCounter
                 onAdd={() => {
-                  addMovieToCart(movieWithoutQuantity);
+                  if (movie.quantity < 1000) {
+                    addMovieToCart(movieWithoutQuantity);
+                  }
                 }}
                 onRemove={() => {
                   removeMoviefromCart(movieWithoutQuantity.id);
                 }}
                 value={movie.quantity}
-                onChange={() => {
-                  console.log('change');
+                onChange={(e) => {
+                  changeMovieQuantity(
+                    movieWithoutQuantity.id,
+                    Number(e.target.value)
+                  );
                 }}
               />
 
@@ -94,8 +103,11 @@ const CartMovieCard = ({ movie }: ICartMovieCardProps) => {
                 removeMoviefromCart(movieWithoutQuantity.id);
               }}
               value={movie.quantity}
-              onChange={() => {
-                console.log('change');
+              onChange={(e) => {
+                changeMovieQuantity(
+                  movieWithoutQuantity.id,
+                  Number(e.target.value)
+                );
               }}
             />
           </S.Column>
