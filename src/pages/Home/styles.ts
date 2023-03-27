@@ -7,8 +7,11 @@ export const Container = styled.main`
 
 export const MoviesContainer = styled.section`
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 16px;
 
   width: 100%;
+  margin: auto;
 `;

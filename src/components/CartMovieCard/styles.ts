@@ -9,6 +9,14 @@ export const Container = styled.div`
   border-radius: 4px;
   background-color: ${({ theme }) => theme.palette.white};
   font-weight: 700;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    justify-content: flex-start;
+
+    :nth-child(n) {
+      margin: 8px 0;
+    }
+  }
 `;
 
 export const Content = styled.div`
@@ -28,6 +36,12 @@ export const TitleContainer = styled.div`
   justify-content: space-between;
 
   width: 100%;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 `;
 
 export const TrashBin = styled.img`
@@ -57,6 +71,10 @@ export const MoviePrice = styled.span`
   color: ${({ theme }) => theme.palette.black};
 
   font-size: 1.05rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    margin: 0;
+  }
 `;
 
 export const SubtotalPrice = styled.span`
@@ -84,4 +102,45 @@ export const LabelSpan = styled.span`
   text-transform: uppercase;
 
   font-size: 0.85rem;
+`;
+
+export const MovieAndTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 48px;
+`;
+
+export const Column = styled.div`
+  display: none;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+
+    :nth-child(n) {
+      margin-right: 16px;
+    }
+    :nth-child(1) {
+      width: 50%;
+    }
+    :nth-child(2) {
+      width: 20%;
+      height: 90px;
+    }
+    :nth-child(3) {
+      width: 25%;
+      height: 90px;
+    }
+    :nth-child(4) {
+      justify-content: flex-end;
+
+      height: 90px;
+
+      position: relative;
+      left: 16px;
+      margin-left: auto;
+    }
+  }
 `;

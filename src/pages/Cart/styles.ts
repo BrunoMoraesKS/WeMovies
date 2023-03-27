@@ -35,6 +35,10 @@ export const HorizontalLine = styled.div`
   height: 1px;
 
   background-color: ${({ theme }) => theme.palette.black};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    width: 280%;
+  }
 `;
 
 export const CartProductsContainer = styled.div`
@@ -47,6 +51,10 @@ export const CartProductsContainer = styled.div`
   height: 100%;
   min-height: calc(100vh - 211px);
   padding: 16px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    min-height: auto;
+  }
 `;
 
 export const SeparatorLine = styled.div`
@@ -56,6 +64,12 @@ export const SeparatorLine = styled.div`
   margin-bottom: 4px;
 
   background-color: ${({ theme }) => theme.palette.black};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    width: 97%;
+
+    margin: 16px auto;
+  }
 `;
 
 export const FinishPurchaseContainer = styled.div`
@@ -65,6 +79,10 @@ export const FinishPurchaseContainer = styled.div`
 
   width: 100%;
   padding: 16px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    flex-direction: row-reverse;
+  }
 `;
 
 export const TotalContainer = styled.div`

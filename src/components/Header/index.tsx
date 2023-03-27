@@ -37,18 +37,19 @@ const Header = () => {
         }}
       />
 
-      <S.CartContainer>
-        <S.CartSpan>{`${getTotalProducts()} ${
-          getTotalProducts() === 1 ? 'item' : 'itens'
-        }`}</S.CartSpan>
+      <S.CartContainer
+        onClick={() => {
+          navigate('/carrinho');
+        }}
+      >
+        <S.CartLabelContainer>
+          <S.CartLabel>Meu Carrinho</S.CartLabel>
+          <S.CartSpan>{`${getTotalProducts()} ${
+            getTotalProducts() === 1 ? 'item' : 'itens'
+          }`}</S.CartSpan>
+        </S.CartLabelContainer>
 
-        <S.CartIcon
-          src={cartIcon}
-          alt='carrinho de compras'
-          onClick={() => {
-            navigate('/carrinho');
-          }}
-        />
+        <S.CartIcon src={cartIcon} alt='carrinho de compras' />
       </S.CartContainer>
     </S.Container>
   );

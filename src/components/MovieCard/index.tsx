@@ -1,5 +1,5 @@
 import React from 'react';
-import useCart from '../../hooks/cart';
+import useCart from '../../hooks/useCart';
 import cartIcon from '../../assets/icons/cart.svg';
 import { IProduct } from '../../interfaces/products/product';
 import Button from '../Button';
@@ -35,7 +35,9 @@ const MovieCard = ({ movie }: IMovieCardProps) => {
         fullWidth
         label={
           getMovieQuantity(movie.id) > 0
-            ? 'Item Adicionado'
+            ? getMovieQuantity(movie.id) > 1
+              ? 'Itens Adicionados'
+              : 'Item Adicionado'
             : 'Adicionar ao carrinho'
         }
       />

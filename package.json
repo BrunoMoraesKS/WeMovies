@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "json-server --delay 1000 --watch ./src/server/db.json"
   },
   "dependencies": {
     "@types/styled-components": "^5.1.26",

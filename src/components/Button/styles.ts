@@ -43,6 +43,7 @@ export const Container = styled.button<IButtonProps>`
   }};
   color: ${({ theme }) => theme.palette.white};
   text-transform: uppercase;
+  white-space: nowrap;
   font-weight: 700;
   letter-spacing: 1px;
 

@@ -14,10 +14,10 @@ const Router = () => {
 
   return (
     <Suspense fallback={<CircularProgress />}>
-      {isLoading && <CircularProgress />}
-
       <BrowserRouter>
         <Header />
+
+        {isLoading && <CircularProgress />}
 
         <Routes>
           <Route path='/' element={<Home />} />

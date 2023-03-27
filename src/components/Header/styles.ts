@@ -5,14 +5,26 @@ export const Container = styled.header`
   justify-content: space-between;
   align-items: center;
 
-  position: absolute;
-  top: 0;
-  left: 0;
-
   width: 100%;
   height: 68px;
 
-  padding: 0 12px;
+  margin: auto;
+  margin-top: -64px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.xs}px) {
+    width: 100vw;
+    margin-left: -16px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    width: 98%;
+    margin: auto;
+    margin-top: -64px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
+    margin-bottom: 16px;
+  }
 `;
 
 export const Logo = styled.img`
@@ -23,12 +35,41 @@ export const CartContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+
+  cursor: pointer;
 `;
 
 export const CartSpan = styled.span`
   font-weight: 600;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const CartIcon = styled.img`
   cursor: pointer;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    width: 32px;
+  }
+`;
+
+export const CartLabelContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
+export const CartLabel = styled.h3`
+  display: none;
+  cursor: pointer;
+
+  font-size: 0.9rem;
+
+  color: ${({ theme }) => theme.palette.white};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    display: flex;
+  }
 `;

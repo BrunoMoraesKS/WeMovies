@@ -6,10 +6,12 @@ import * as S from './styles';
 import { useNavigate } from 'react-router-dom';
 import CartMovieCard from '../../components/CartMovieCard';
 import { CartContext } from '../../context/cart';
-import useCart from '../../hooks/cart';
+import useCart from '../../hooks/useCart';
 import { formatCurrencyBRL } from '../../utils/currency';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 const Cart = () => {
+  const { width } = useWindowDimensions();
   const navigate = useNavigate();
   const { cart } = useContext(CartContext);
   const { getTotalPrice, cleanCart } = useCart();
@@ -49,9 +51,9 @@ const Cart = () => {
             })}
           </S.CartProductsContainer>
 
-          <S.FinishPurchaseContainer>
-            <S.SeparatorLine />
+          <S.SeparatorLine />
 
+          <S.FinishPurchaseContainer>
             <S.TotalContainer>
               <S.LabelSpan>Total</S.LabelSpan>
               <S.TotalPrice>{formatCurrencyBRL(getTotalPrice())}</S.TotalPrice>
@@ -61,7 +63,8 @@ const Cart = () => {
                 setPurchaseMade(true);
                 cleanCart();
               }}
-              fullWidth
+              size='md'
+              fullWidth={width >= 720 ? false : true}
               label='Finalizar Pedido'
             />
           </S.FinishPurchaseContainer>
